@@ -1,0 +1,28 @@
+# This workflow will do a clean installation of dependencies, cache/restore them, and build the dist directory to be served by pm2
+
+name: new admin dashboard pharmacy CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - run: npm ci
+    - run: npm run build
+    - run: pm2 restart new_admin_dashboard_pharmacy
