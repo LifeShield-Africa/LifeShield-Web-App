@@ -1,10 +1,10 @@
 # This workflow will do a clean installation of dependencies, cache/restore them, and build the dist directory to be served by pm2
 
-name: new admin dashboard pharmacy CI
+name: LifeShield-Web-App Vite CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -25,4 +25,3 @@ jobs:
 
     - run: npm ci
     - run: npm run build
-    - run: pm2 restart new_admin_dashboard_pharmacy
